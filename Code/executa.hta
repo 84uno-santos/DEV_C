@@ -1,0 +1,89 @@
+<HTML>
+<HEAD>
+<TITLE>Interface de Tarefas Locais Avançadas</TITLE>
+<HTA:APPLICATION
+    APPLICATIONNAME="ExecutarCopiarAvancado"
+    WINDOWSTATE="normal"
+    BORDER="dialog"
+    SINGLEINSTANCE="yes"
+>
+</HEAD>
+<SCRIPT LANGUAGE="VBScript">
+    ' Cria os objetos essenciais para interação com o sistema
+    Set objShell = CreateObject("WScript.Shell")
+    Set objFSO = CreateObject("Scripting.FileSystemObject")
+
+    ' --- FUNÇÃO PARA EXECUTAR O PROGRAMA (OPÇÃO 1) ---
+    Sub ExecutarPrograma_Opcao1()
+        ' Defina o caminho completo para o executável que você deseja chamar
+        ProgramPath = "C:\Program Files\Notepad++\notepad++.exe" 
+                        objShell.Run ProgramPath, 1, False 
+        
+        MsgBox "O programa 'Paint' foi executado com sucesso!", 64, "Execução Concluída"
+    End Sub
+
+    ' --- FUNÇÃO PARA COPIAR MÚLTIPLOS ARQUIVOS E EXECUTAR UM PROGRAMA (OPÇÃO 2) ---
+    Sub CopiarMultiplosEExecutar()
+    /*    
+        ' --- CONFIGURAÇÕES DE ARQUIVOS E DIRETÓRIOS ---
+        
+        ' Pasta de destino comum para todas as cópias
+        DestinationFolder = "C:\Backup_Arquivos_Novos\"
+        
+        ' Arquivo 1 (Origem)
+        SourceFile1 = "C:\Dados\Relatorio_Janeiro.log" 
+        
+        ' Arquivo 2 (Origem)
+        SourceFile2 = "C:\Dados\Config_App.ini"
+        
+        ' Programa adicional para executar
+        ExtraProgramPath = "C:\Windows\System32\calc.exe" ' Exemplo: Abrir a Calculadora
+        
+        ' --- INÍCIO DA LÓGICA ---
+        
+        ' 1. Verifica e cria a pasta de destino
+        If objFSO.FolderExists(DestinationFolder) = False Then
+            objFSO.CreateFolder(DestinationFolder)
+        End If
+
+        ' 2. CÓPIA DO ARQUIVO 1
+        If objFSO.FileExists(SourceFile1) Then
+            objFSO.CopyFile SourceFile1, DestinationFolder, True ' True para sobrescrever
+            MsgBox "Arquivo 1 copiado: " & SourceFile1, 64, "Cópia 1 OK"
+        Else
+            MsgBox "Aviso: Arquivo 1 não encontrado em " & SourceFile1, 16, "Erro de Cópia 1"
+        End If
+
+        ' 3. CÓPIA DO ARQUIVO 2
+        If objFSO.FileExists(SourceFile2) Then
+            objFSO.CopyFile SourceFile2, DestinationFolder, True ' True para sobrescrever
+            MsgBox "Arquivo 2 copiado: " & SourceFile2, 64, "Cópia 2 OK"
+        Else
+            MsgBox "Aviso: Arquivo 2 não encontrado em " & SourceFile2, 16, "Erro de Cópia 2"
+        End If
+      */  
+        ' 1. EXECUÇÃO DO PROGRAMA ADICIONAL
+        objShell.Run ExtraProgramPath, 1, False 
+        MsgBox "Programa adicional (Calculadora) executado.", 64, "Execução OK"
+
+        MsgBox "Todas as tarefas foram concluídas!", 64, "Processo Finalizado"
+    End Sub
+
+</SCRIPT>
+<BODY>
+    <H2>Interface de Tarefas Locais Avançadas</H2>
+    <P>Selecione a tarefa que deseja executar.</P>
+    <HR>
+    
+    <BUTTON onclick="VBScript:ExecutarPrograma_Opcao1()">
+        ▶️ 1. Executar Apenas o Paint (Tarefa Simples)
+    </BUTTON>
+    
+    <BR><BR>
+    
+    <BUTTON onclick="VBScript:CopiarMultiplosEExecutar()">
+        📁 2. Copiar 2 Arquivos e Abrir a Calculadora (Tarefa Múltipla)
+    </BUTTON>
+    
+</BODY>
+</HTML>
